@@ -1,10 +1,10 @@
-
 name: Build
 
 on:
   push:
     branches:
       - main
+
 
 jobs:
   build:
@@ -25,12 +25,6 @@ jobs:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
-      - name: Test SonarQube Connection 1
-        run: |
-          echo "SonarQube Host URL: ${{ secrets.SONAR_HOST_URL }}"
-      - name: Test SonarQube Connection 2
-        run: |
-          echo "SonarQube Token: ${{ secrets.SONAR_TOKEN }}"
       - name: Cache Maven packages
         uses: actions/cache@v1
         with:
@@ -41,4 +35,4 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Git-Action-Scan -Dsonar.projectName='Git-Action-Scan'
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=HIMMIREDA_reddit-clone-backend_AYuHvA_q-xIJLWaKUKJ7 -Dsonar.projectName='reddit-clone-backend'
